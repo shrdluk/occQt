@@ -29,10 +29,6 @@
   #include <Xw_Window.hxx>
 #endif
 
-#ifndef WNT
-#define UNREFERENCED_PARAMETER(p) ((void)(p))
-#endif
-
 // the key for multi selection :
 #define MULTISELECTIONKEY Qt::ShiftModifier
 
@@ -78,7 +74,7 @@ OccView::OccView(QWidget* parent )
     #endif
 
     // Create V3dViewer and V3d_View
-    mViewer = new V3d_Viewer(GetGraphicDriver(), (short* const)"viewer");
+    mViewer = new V3d_Viewer(GetGraphicDriver(), Standard_ExtString("Visu3D"));
 
     mView = mViewer->CreateView();
 
@@ -111,14 +107,14 @@ Handle_AIS_InteractiveContext OccView::getContext() const
 void OccView::paintEvent( QPaintEvent* e )
 {
     // eliminate the warning C4100: 'e' : unreferenced formal parameter
-    UNREFERENCED_PARAMETER(e);
+    Q_UNUSED(e);
 
     mView->Redraw();
 }
 
 void OccView::resizeEvent( QResizeEvent* e )
 {
-    UNREFERENCED_PARAMETER(e);
+    Q_UNUSED(e);
 
     if( !mView.IsNull() )
     {
@@ -198,7 +194,7 @@ void OccView::wheelEvent( QWheelEvent * e )
 
 void OccView::onLButtonDown( const int theFlags, const QPoint thePoint )
 {
-    UNREFERENCED_PARAMETER(theFlags);
+    Q_UNUSED(theFlags);
 
     // Save the current mouse coordinate in min.
     mXmin = thePoint.x();
@@ -210,7 +206,7 @@ void OccView::onLButtonDown( const int theFlags, const QPoint thePoint )
 
 void OccView::onMButtonDown( const int theFlags, const QPoint thePoint )
 {
-    UNREFERENCED_PARAMETER(theFlags);
+    Q_UNUSED(theFlags);
 
     // Save the current mouse coordinate in min.
     mXmin = thePoint.x();
@@ -226,13 +222,13 @@ void OccView::onMButtonDown( const int theFlags, const QPoint thePoint )
 
 void OccView::onRButtonDown( const int theFlags, const QPoint thePoint )
 {
-    UNREFERENCED_PARAMETER(theFlags);
-    UNREFERENCED_PARAMETER(thePoint);
+    Q_UNUSED(theFlags);
+    Q_UNUSED(thePoint);
 }
 
 void OccView::onMouseWheel( const int theFlags, const int theDelta, const QPoint thePoint )
 {
-    UNREFERENCED_PARAMETER(theFlags);
+    Q_UNUSED(theFlags);
 
     Standard_Integer aFactor = 16;
 
@@ -255,13 +251,13 @@ void OccView::onMouseWheel( const int theFlags, const int theDelta, const QPoint
 
 void OccView::addItemInPopup( QMenu* theMenu )
 {
-    UNREFERENCED_PARAMETER(theMenu);
+    Q_UNUSED(theMenu);
 }
 
 void OccView::popup( const int x, const int y )
 {
-    UNREFERENCED_PARAMETER(x);
-    UNREFERENCED_PARAMETER(y);
+    Q_UNUSED(x);
+    Q_UNUSED(y);
 }
 
 void OccView::onLButtonUp( const int theFlags, const QPoint thePoint )
@@ -289,7 +285,7 @@ void OccView::onLButtonUp( const int theFlags, const QPoint thePoint )
 
 void OccView::onMButtonUp( const int theFlags, const QPoint thePoint )
 {
-    UNREFERENCED_PARAMETER(theFlags);
+    Q_UNUSED(theFlags);
 
     if (thePoint.x() == mXmin && thePoint.y() == mYmin)
     {
@@ -299,7 +295,7 @@ void OccView::onMButtonUp( const int theFlags, const QPoint thePoint )
 
 void OccView::onRButtonUp( const int theFlags, const QPoint thePoint )
 {
-    UNREFERENCED_PARAMETER(theFlags);
+    Q_UNUSED(theFlags);
 
     popup(thePoint.x(), thePoint.y());
 }
@@ -367,8 +363,8 @@ void OccView::multiDragEvent( const int x, const int y )
 
 void OccView::inputEvent( const int x, const int y )
 {
-    UNREFERENCED_PARAMETER(x);
-    UNREFERENCED_PARAMETER(y);
+    Q_UNUSED(x);
+    Q_UNUSED(y);
 
     mContext->Select();
 
@@ -377,8 +373,8 @@ void OccView::inputEvent( const int x, const int y )
 
 void OccView::multiInputEvent( const int x, const int y )
 {
-    UNREFERENCED_PARAMETER(x);
-    UNREFERENCED_PARAMETER(y);
+    Q_UNUSED(x);
+    Q_UNUSED(y);
 
     mContext->ShiftSelect();
 

@@ -17,11 +17,11 @@ FORMS    += \
 
 SOURCES += main.cpp \
     occQt.cpp \
-    OccView.cpp
+    occView.cpp
 
 HEADERS  += \
     occQt.h \
-    OccView.h
+    occView.h
 
 INCLUDEPATH += /usr/include/oce
 
