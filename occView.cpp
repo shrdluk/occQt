@@ -114,7 +114,7 @@ void OccView::paintEvent( QPaintEvent* e )
 
 void OccView::resizeEvent( QResizeEvent* e )
 {
-    Q_UNUSED(e);
+    QGLWidget::resizeEvent(e);
 
     if( !mView.IsNull() )
     {
